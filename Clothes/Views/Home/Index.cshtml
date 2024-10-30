@@ -1,0 +1,446 @@
+﻿@model IEnumerable<ClothesApp.Models.Product>
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+
+<link rel="stylesheet" href="~/Slider/style.css">
+<link rel="stylesheet" href="~/SideBar/style.css">
+<link rel="stylesheet" href="~/disttt/style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+
+
+<style>
+    .wrapper {
+        display: grid;
+        grid-template-columns: 330px 3fr; /* İstenen genişliklere ayarlayın */
+    }
+
+</style>
+
+
+
+<div class="benimdiv  mt-1  justify-content-evenly ">
+    <div class="wrapper d-flex">
+        <div class="wrapper">
+            <!-- Sidebar -->
+            <aside id="sidebar" class="sidebarasd" style="display: block">
+                <div class="h-100">
+                    <div class="sidebar-logo">
+                        <a href="#">Kategoriler</a>
+                    </div>
+                    <!-- Sidebar Navigation -->
+                    <ul class="sidebar-nav">
+                        <li class="sidebar-header">
+                            Koleksiyonlar ve Ürünler
+                        </li>
+                        <li class="sidebar-item">
+                            <a href="\Tools\Tshirt" class="sidebar-link">
+                                <i class="bi bi-bag-heart-fill"></i>
+                                Tişörtler
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a href="\Tools\Shirt" class="sidebar-link collapsed" data-bs-toggle="collapse" data-bs-target="#pages"
+                               aria-expanded="false" aria-controls="pages">
+                                <i class="bi bi-bag-heart-fill"></i>
+                                Etekler
+                            </a>
+                            <ul id="pages" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
+                                <li class="sidebar-item">
+                                    <a href="\Tools\ShortShirt" class="sidebar-link">Kısa Etekler</a>
+                                </li>
+                                <li class="sidebar-item">
+                                    <a href="\Tools\LongShirt" class="sidebar-link">Uzun Etekler</a>
+                                </li>
+
+                            </ul>
+                        </li>
+                        <li class="sidebar-item">
+                            <a href="#" class="sidebar-link collapsed" data-bs-toggle="collapse" data-bs-target="#dashboard"
+                               aria-expanded="false" aria-controls="dashboard">
+                                <i class="bi bi-bag-heart-fill"></i>
+                                Çantalar
+                            </a>
+                            <ul id="dashboard" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
+                                <li class="sidebar-item">
+                                    <a href="\Tools\Xbag" class="sidebar-link">Çapraz Çantalar</a>
+                                </li>
+                                <li class="sidebar-item">
+                                    <a href="\Tools\ShoulderBag" class="sidebar-link">Omuz Çantalar</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="sidebar-item">
+                            <a href="#" class="sidebar-link collapsed" data-bs-toggle="collapse" data-bs-target="#auth"
+                               aria-expanded="false" aria-controls="auth">
+                                <i class="bi bi-bag-heart-fill"></i>
+                                Ayakkabılar
+                            </a>
+                            <ul id="auth" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
+                                <li class="sidebar-item">
+                                    <a href="\Tools\Sneakers" class="sidebar-link">Sneakers</a>
+                                </li>
+                                <li class="sidebar-item">
+                                    <a href="\Tools\Sandals" class="sidebar-link">Sandaletler</a>
+                                </li>
+                            </ul>
+
+                        </li>
+                        <li class="sidebar-item">
+                            <a href="#" class="sidebar-link collapsed" data-bs-toggle="collapse" data-bs-target="#multi"
+                               aria-expanded="false" aria-controls="multi">
+                                <i class="bi bi-bag-heart-fill"></i>
+                                Elbiseler
+                            </a>
+                            <ul id="auth" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
+                                <li class="sidebar-item">
+                                    <a href="\Tools\CasualDress" class="sidebar-link">Günlük Elbiseler</a>
+                                </li>
+                                <li class="sidebar-item">
+                                    <a href="\Tools\EveningDress" class="sidebar-link">Gece Elbiseleri</a>
+                                </li>
+                            </ul>
+
+                        </li>
+                        @* <li class="sidebar-header">
+                        Gözat
+                        </li>
+                        <li class="sidebar-item">
+                        <a href="#" class="sidebar-link collapsed" data-bs-toggle="collapse" data-bs-target="#multi"
+                        aria-expanded="false" aria-controls="multi">
+                        <i class="fa-solid fa-share-nodes pe-2"></i>
+                        Kaynak Merkezi
+                        </a>
+                        <ul id="multi" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
+                        <li class="sidebar-item">
+                        <a href="#" class="sidebar-link collapsed" data-bs-toggle="collapse"
+                        data-bs-target="#multi-two" aria-expanded="false" aria-controls="multi-two">
+                        İlgili Konular
+                        </a>
+                        <ul id="multi-two" class="sidebar-dropdown list-unstyled collapse">
+                        <li class="sidebar-item">
+                        <a href="#" class="sidebar-link">Etkinlikler</a>
+                        </li>
+                        <li class="sidebar-item">
+                        <a href="\SSS\SSS" class="sidebar-link">Sıkça Sorulan Sorular (SSS)</a>
+                        </li>
+                        </ul>
+                        </li>
+                        </ul> *@
+
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        @*
+
+                        <div class="h-100">
+                        <div class="sidebar-logo">
+                        <a href="#">Filtrele</a>
+                        <br /> <br />
+
+                        <div class="form-check form-switch" style="color:white">
+                        <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" checked>
+                        <label class="form-check-label" for="flexSwitchCheckDefault">Elbiseler</label>
+                        </div>
+                        <div class="form-check form-switch" style="color:white">
+                        <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked>
+                        <label class="form-check-label" for="flexSwitchCheckChecked">Etekler </label>
+                        </div>
+                        <div class="form-check form-switch" style="color:white">
+                        <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked>
+                        <label class="form-check-label" for="flexSwitchCheckDisabled">Çantalar</label>
+                        </div>
+                        <div class="form-check form-switch" style="color:white">
+                        <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked >
+                        <label class="form-check-label" for="flexSwitchCheckCheckedDisabled">Tişörtler </label>
+                        </div>
+                        <div class="form-check form-switch" style="color:white">
+                        <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked>
+                        <label class="form-check-label" for="flexSwitchCheckCheckedDisabled">Ayakkabılar </label>
+                        </div>
+                        </div>
+                        </div> *@
+                        @* <section class="mb-4">
+                        <h6 class="font-weight-bold mb-3">Price</h6>
+
+                        <div class="form-check mb-3" style="color:white">
+                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="price-radio" autocompleted="">
+                        <label class="form-check-label text-uppercase small text-muted" for="price-radio">
+                        Under $25
+                        </label>
+                        </div>
+
+                        <div class="form-check mb-3" style="color:white">
+                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="price-radio2" autocompleted="">
+                        <label class="form-check-label text-uppercase small text-muted" for="price-radio2">
+                        $25 to $50
+                        </label>
+                        </div>
+
+                        <div class="form-check mb-3" style="color:white">
+                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="price-radio3" autocompleted="">
+                        <label class="form-check-label text-uppercase small text-muted" for="price-radio3">
+                        $50 to $100
+                        </label>
+                        </div>
+
+                        <div class="form-check mb-3" style="color:white">
+                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="price-radio4" autocompleted="">
+                        <label class="form-check-label text-uppercase small text-muted" for="price-radio4">
+                        $100 to $200
+                        </label>
+                        </div>
+
+                        <div class="form-check mb-3" style="color:white">
+                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="price-radio5" autocompleted="">
+                        <label class="form-check-label text-uppercase small text-muted" for="price-radio5">
+                        $200 &amp; above
+                        </label>
+                        </div>
+                        </section> *@
+                        </li>
+                    </ul>
+                </div>
+            </aside>
+            <!-- Main Component -->
+            <div class="main justify-content-center ">
+                <nav px-3 ">
+                    <!-- Button for sidebar toggle -->
+                    <button class="btn" type="button" data-bs-theme="dark" onclick="myjscode()">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                </nav>
+                <main class="content px-3 py-2">
+                    <div class="container-fluid">
+                        <div class="mb-3">
+
+                            <div class="col-md-9 myswipper">
+                                <div>
+                                    <div class="swiper-container main-slider loading ">
+                                        <div class="swiper-wrapper">
+                                            <div class="swiper-slide">
+                                                <figure class="slide-bgimg" style="background-image:url(https://images.unsplash.com/photo-1483985988355-763728e1935b?crop=entropy&cs=srgb&fm=jpg&ixid=MnwxNDU4OXwwfDF8cmFuZG9tfHx8fHx8fHx8MTY0MDE1NTg2Ng&ixlib=rb-1.2.1&q=85)">
+                                                    <img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?crop=entropy&cs=srgb&fm=jpg&ixid=MnwxNDU4OXwwfDF8cmFuZG9tfHx8fHx8fHx8MTY0MDE1NTg2Ng&ixlib=rb-1.2.1&q=85" class="entity-img" />
+                                                </figure>
+                                                <div class="content">
+                                                    <p class="title">Shaun Matthews</p>
+                                                    <span class="caption">.</span>
+                                                </div>
+                                            </div>
+                                            <div class="swiper-slide">
+                                                <figure class="slide-bgimg" style="background-image:url(https://images.unsplash.com/photo-1500643752441-4dc90cda350a?crop=entropy&cs=srgb&fm=jpg&ixid=MnwxNDU4OXwwfDF8cmFuZG9tfHx8fHx8fHx8MTY0MDE1NTg2Ng&ixlib=rb-1.2.1&q=85)">
+                                                    <img src="https://images.unsplash.com/photo-1500643752441-4dc90cda350a?crop=entropy&cs=srgb&fm=jpg&ixid=MnwxNDU4OXwwfDF8cmFuZG9tfHx8fHx8fHx8MTY0MDE1NTg2Ng&ixlib=rb-1.2.1&q=85" class="entity-img" />
+                                                </figure>
+                                                <div class="content">
+                                                    <p class="title">Alexis Berry</p>
+                                                    <span class="caption">.</span>
+                                                </div>
+                                            </div>
+                                            <div class="swiper-slide">
+                                                <figure class="slide-bgimg" style="background-image:url(https://images.unsplash.com/photo-1465408953385-7c4627c29435?crop=entropy&cs=srgb&fm=jpg&ixid=MnwxNDU4OXwwfDF8cmFuZG9tfHx8fHx8fHx8MTY0MDE1NTg2Ng&ixlib=rb-1.2.1&q=85)">
+                                                    <img src="https://images.unsplash.com/photo-1465408953385-7c4627c29435?crop=entropy&cs=srgb&fm=jpg&ixid=MnwxNDU4OXwwfDF8cmFuZG9tfHx8fHx8fHx8MTY0MDE1NTg2Ng&ixlib=rb-1.2.1&q=85" class="entity-img" />
+                                                </figure>
+                                                <div class="content">
+                                                    <p class="title">Billie	Pierce</p>
+                                                    <span class="caption">.</span>
+                                                </div>
+                                            </div>
+                                            <div class="swiper-slide">
+                                                <figure class="slide-bgimg" style="background-image:url(https://images.unsplash.com/photo-1538329972958-465d6d2144ed?crop=entropy&cs=srgb&fm=jpg&ixid=MnwxNDU4OXwwfDF8cmFuZG9tfHx8fHx8fHx8MTY0MDE1NTkzNg&ixlib=rb-1.2.1&q=85)">
+                                                    <img src="https://images.unsplash.com/photo-1538329972958-465d6d2144ed?crop=entropy&cs=srgb&fm=jpg&ixid=MnwxNDU4OXwwfDF8cmFuZG9tfHx8fHx8fHx8MTY0MDE1NTkzNg&ixlib=rb-1.2.1&q=85" class="entity-img" />
+                                                </figure>
+                                                <div class="content">
+                                                    <p class="title">Trevor	Copeland</p>
+                                                    <span class="caption">.</span>
+                                                </div>
+                                            </div>
+                                            <div class="swiper-slide">
+                                                <figure class="slide-bgimg" style="background-image:url(https://images.unsplash.com/photo-1583292650898-7d22cd27ca6f?crop=entropy&cs=srgb&fm=jpg&ixid=MnwxNDU4OXwwfDF8cmFuZG9tfHx8fHx8fHx8MTY0MDE1NTk1OQ&ixlib=rb-1.2.1&q=85)">
+                                                    <img src="https://images.unsplash.com/photo-1583292650898-7d22cd27ca6f?crop=entropy&cs=srgb&fm=jpg&ixid=MnwxNDU4OXwwfDF8cmFuZG9tfHx8fHx8fHx8MTY0MDE1NTk1OQ&ixlib=rb-1.2.1&q=85" class="entity-img" />
+                                                </figure>
+                                                <div class="content">
+                                                    <p class="title">Bernadette	Newman</p>
+                                                    <span class="caption">.</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- If we need navigation buttons -->
+                                        <div class="swiper-button-prev swiper-button-white"></div>
+                                        <div class="swiper-button-next swiper-button-white"></div>
+                                    </div>
+
+                                    <!-- Thumbnail navigation -->
+                                    <div class="swiper-container nav-slider loading ">
+                                        <div class="swiper-wrapper" role="navigation ">
+                                            <div class="swiper-slide">
+                                                <figure class="slide-bgimg" style="background-image:url(https://images.unsplash.com/photo-1483985988355-763728e1935b?crop=entropy&cs=srgb&fm=jpg&ixid=MnwxNDU4OXwwfDF8cmFuZG9tfHx8fHx8fHx8MTY0MDE1NTg2Ng&ixlib=rb-1.2.1&q=85)">
+                                                    <img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?crop=entropy&cs=srgb&fm=jpg&ixid=MnwxNDU4OXwwfDF8cmFuZG9tfHx8fHx8fHx8MTY0MDE1NTg2Ng&ixlib=rb-1.2.1&q=85" class="entity-img" />
+                                                </figure>
+                                                <div class="content">
+                                                    <p class="title">Shaun Matthews</p>
+                                                </div>
+                                            </div>
+                                            <div class="swiper-slide">
+                                                <figure class="slide-bgimg" style="background-image:url(https://images.unsplash.com/photo-1500643752441-4dc90cda350a?crop=entropy&cs=srgb&fm=jpg&ixid=MnwxNDU4OXwwfDF8cmFuZG9tfHx8fHx8fHx8MTY0MDE1NTg2Ng&ixlib=rb-1.2.1&q=85)">
+                                                    <img src="https://images.unsplash.com/photo-1500643752441-4dc90cda350a?crop=entropy&cs=srgb&fm=jpg&ixid=MnwxNDU4OXwwfDF8cmFuZG9tfHx8fHx8fHx8MTY0MDE1NTg2Ng&ixlib=rb-1.2.1&q=85" class="entity-img" />
+                                                </figure>
+                                                <div class="content">
+                                                    <p class="title">Alexis Berry</p>
+                                                </div>
+                                            </div>
+                                            <div class="swiper-slide">
+                                                <figure class="slide-bgimg" style="background-image:url(https://images.unsplash.com/photo-1465408953385-7c4627c29435?crop=entropy&cs=srgb&fm=jpg&ixid=MnwxNDU4OXwwfDF8cmFuZG9tfHx8fHx8fHx8MTY0MDE1NTg2Ng&ixlib=rb-1.2.1&q=85)">
+                                                    <img src="https://images.unsplash.com/photo-1465408953385-7c4627c29435?crop=entropy&cs=srgb&fm=jpg&ixid=MnwxNDU4OXwwfDF8cmFuZG9tfHx8fHx8fHx8MTY0MDE1NTg2Ng&ixlib=rb-1.2.1&q=85" class="entity-img" />
+                                                </figure>
+                                                <div class="content">
+                                                    <p class="title">Billie	Pierce</p>
+                                                </div>
+                                            </div>
+                                            <div class="swiper-slide">
+                                                <figure class="slide-bgimg" style="background-image:url(https://images.unsplash.com/photo-1538329972958-465d6d2144ed?crop=entropy&cs=srgb&fm=jpg&ixid=MnwxNDU4OXwwfDF8cmFuZG9tfHx8fHx8fHx8MTY0MDE1NTkzNg&ixlib=rb-1.2.1&q=85)">
+                                                    <img src="https://images.unsplash.com/photo-1538329972958-465d6d2144ed?crop=entropy&cs=srgb&fm=jpg&ixid=MnwxNDU4OXwwfDF8cmFuZG9tfHx8fHx8fHx8MTY0MDE1NTkzNg&ixlib=rb-1.2.1&q=85" class="entity-img" />
+                                                </figure>
+                                                <div class="content">
+                                                    <p class="title">Trevor	Copeland</p>
+                                                </div>
+                                            </div>
+                                            <div class="swiper-slide">
+                                                <figure class="slide-bgimg" style="background-image:url(https://images.unsplash.com/photo-1583292650898-7d22cd27ca6f?crop=entropy&cs=srgb&fm=jpg&ixid=MnwxNDU4OXwwfDF8cmFuZG9tfHx8fHx8fHx8MTY0MDE1NTk1OQ&ixlib=rb-1.2.1&q=85)">
+                                                    <img src="https://images.unsplash.com/photo-1583292650898-7d22cd27ca6f?crop=entropy&cs=srgb&fm=jpg&ixid=MnwxNDU4OXwwfDF8cmFuZG9tfHx8fHx8fHx8MTY0MDE1NTk1OQ&ixlib=rb-1.2.1&q=85" class="entity-img" />
+                                                </figure>
+                                                <div class="content">
+                                                    <p class="title">Bernadette	Newman</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </main>
+            </div>
+        </div>
+
+    </div>
+
+
+    <br />
+    <h4 class="fw-bold helvetica-neue">KOLEKSİYONLAR</h4>
+
+
+    <div class="spacer"></div>
+    <br />
+    <div class="mb-5"></div>
+                @*
+    <div class="row">
+    @foreach (var item in Model)
+    {
+    <div class="col-md-3">
+    <div class="card">
+    <div class="card-header">
+    @item.Name
+    </div>
+    <img src="@item.ImageUrl" class="card-img-top" alt="..." style="height:200px" width="80">
+    <div class="card-body">
+    <p class="card-text">@item.Description</p>
+    </div>
+    <div class="card-footer">
+    <label style="font-size:20px;color:crimson"><b>@item.Price.ToString("0.00") £</b></label>
+    <a asp-action="details" asp-controller="home" asp-route-id="@item.Id" class="btn btn-outline-info" style="float:right">detay</a>
+    </div>
+    </div>
+    </div>
+    }
+    </div>
+    *@
+
+</div>
+<section>
+    <div class="container">
+        <div class="row justify-content-center align-items-center">
+                @foreach (var item in Model)
+                {
+                <div class="col-md-3 mb-4">
+                    <div class="card mx-auto">
+                        <img src="@item.ImageUrl" class="card-img-top" />
+                        <div class="info">
+                            <h1><label style="font-size:20px;color:crimson"><b>@item.Price.ToString("0.00") £</b></label></h1>
+                            <div class="card-header">
+                                    @item.Name
+                            </div>
+                            <p class="card-text">@item.Description</p>
+                            <button onclick="window.location.href='@Url.Action("Details", "Home", new { id = item.Id })'" class="btn btn-outline-s" style="float:right">Detay</button>
+                        </div>
+                    </div>
+                </div>
+                }
+        </div>
+    </div>
+</section>
+<script>
+    function myjscode() {
+        var sidebarElements = document.getElementsByClassName('sidebarasd');
+
+        var mydiv = document.querySelector('.content');
+
+
+
+        for (var i = 0; i < sidebarElements.length; i++) {
+            var sidebar = sidebarElements[i];
+            if (sidebar.style.display === 'none' || sidebar.style.display === '') {
+                sidebar.style.display = 'block';
+                mydiv.style.width = "100vw"
+
+            } else {
+                sidebar.style.display = 'none';
+                mydiv.style.width = "95vw"
+            }
+        }
+        var mainElements = document.getElementsByClassName('main');
+        for (var i = 0; i < mainElements.length; i++) {
+            var mainElement = mainElements[i];
+            if (mainElement.style.overflow == 'hidden' || mainElement.style.overflow === '') {
+                mainElement.style.overflow = 'visible';
+            } else {
+                mainElement.style.overflow = 'hidden';
+            }
+        }
+
+        var contentDiv = document.querySelector('.myswipper');
+
+        contentDiv.classList.toggle('col-md-9');
+
+
+    }
+
+</script>
+
+
+
+<@* div class="row">
+    @foreach (var item in Model)
+    {
+    <div class="col-md-3">
+    <div class="card">
+    <div class="card-header">
+    @item.Name
+    </div>
+    <img src="@item.ImageUrl" class="card-img-top" alt="..." style="height:200px " width="80">
+    <div class="card-body">
+    <p class="card-text">@item.Description</p>
+    </div>
+    <div class="card-footer">
+    <label style="font-size:20px;color:crimson"><b>@item.Price.ToString("0.00") £</b></label>
+    <a asp-action="Details" asp-conroller="Home" asp-route-id="@item.Id" class="btn btn-outline-info" style="float:right">Detay</a>
+    </div>
+    </div>
+    </div>
+    }*@

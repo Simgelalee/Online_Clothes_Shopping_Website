@@ -1,0 +1,51 @@
+﻿@model ClothesApp.Models.Category
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1 style="color : wheat">Ayrıntılar</h1>
+
+ 
+<div class="container">
+    <div class="row justify-content-center " >
+        <div class="col-md-8">
+            <table class="table  " style="color: wheat">
+                <tbody>
+                    <tr>
+                        <th scope="row">Kategori Adı</th>
+                        <td>@Html.DisplayFor(model => model.CategoryName)</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Açıklama</th>
+                        <td>@Html.DisplayFor(model => model.Description)</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Üst Kategori ID</th>
+                        <td>@Html.DisplayFor(model => model.ParentCategoryId)</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Üst Kategori Adı</th>
+                        <td>@Html.DisplayFor(model => model.ParentCategoryName)</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Üst Kategori Açıklama</th>
+                        <td>@Html.DisplayFor(model => model.ParentCategoryDescription)</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Resim URL</th>
+                        <td>@Html.DisplayFor(model => model.ImageUrl)</td>
+                    </tr>
+                </tbody>
+            </table>  
+            <div>
+                <a asp-action="Edit" asp-route-id="@Model?.Id" class="btn btn-success"><i class="bi bi-pencil"></i>Düzenle</a>
+
+                <a asp-action="Index" class="btn btn-primary">Kayıt Listesi</a>
+            </div>
+        </div>
+      
+    </div>
+</div>
+

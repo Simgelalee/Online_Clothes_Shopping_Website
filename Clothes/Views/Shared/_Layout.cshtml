@@ -1,0 +1,236 @@
+﻿@using ClothesApp.Models
+@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Clothes</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    @* <link rel="stylesheet" href="~/clothes.styles.css" asp-append-version="true" /> *@
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.0.5/css/dataTables.dataTables.min.css">
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.0.7/css/swiper.min.css'>
+    <link rel="stylesheet" href="~/Slider/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <link rel="stylesheet" href="~/SideBar/style.css">
+    @using ClothesApp.Data
+</head>
+<body>
+    <header>
+            <br />
+            <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark border-bottom box-shadow mb-3">
+                <div class="container-fluid">
+                    <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
+                    <img src="~/image/oig4.qbbcfzmqdkzv9s.jpg" />
+                        FASHION<strong><span style="color:darkred">SHOP</span></strong>
+
+                    </a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                        <ul class="navbar-nav flex-grow-1">
+                            <li class="nav-item">
+                                <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Index">Anasayfa</a>
+                            </li>
+                          @if (User.IsInRole(UserRoles.Role_Admin))
+                          {
+                            <li class="nav-item dropdown">
+                                <button class="  dropdown-toggle btn btn-dark  " href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" onclick="toggleClassOnClick()">
+                                    Admin Paneli
+                                </button>
+                                <div class="dropdown-menu dropdown-menu-dark " aria-labelledby="navbarDropdown">
+                                    <lu>
+                                        <a class="dropdown-item" asp-area="" asp-controller="Category" asp-action="Index">Kategoriler</a>
+                                        <a class="dropdown-item" asp-area="" asp-controller="Product" asp-action="Index">Ürünler</a>
+                                        <a class="dropdown-item" asp-area="" asp-controller="Order" asp-action="Index">Siparişler</a>
+                                    </lu>
+                                </div>
+                            </li>
+                        }
+
+                        else if (User.Identity.IsAuthenticated)
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-white" asp-area="" asp-controller="Order" asp-action="Index">Siparişler</a>
+                            </li>
+                        }
+                        
+                          <li class="nav-item">
+                            <a class="nav-link text-white" asp-area="" asp-controller="Tools" asp-action="Bag">Çanta</a>
+                          </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" asp-area="" asp-controller="Tools" asp-action="Tshirt">Tişört</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" asp-area="" asp-controller="Tools" asp-action="Shirt">Etek</a>
+                        </li>
+                        
+                        <li class="nav-item">
+                            <a class="nav-link text-white" asp-area="" asp-controller="Tools" asp-action="Shoes">Ayakkabı</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" asp-area="" asp-controller="Tools" asp-action="Dress">Elbise</a>
+                        </li>
+
+                        @if(User.Identity.IsAuthenticated && HttpContextAccessor.HttpContext.Session.GetInt32(Diger.ssShoppingCart) != null)
+                        {
+                            <li style="color:white">
+                                <a asp-area ="Customer" asp-controller="Cart" asp-action="Index" class="nav-link text-white"> 
+                                    @{
+                                        var count = HttpContextAccessor.HttpContext.Session.GetInt32(Diger.ssShoppingCart);
+                                    }
+                                    <i class="bi bi-cart2"></i>(@count)
+
+                              </a>
+                            </li>
+                        }
+
+                        else
+                        {
+                            <li style="color:white">
+                                <a href = "/Identity/Account/Login" class="nav-link text-white"> 
+                                   
+                                    <i class="bi bi-cart2"></i>(0)
+
+                              </a>
+                            </li>
+                            
+                        }
+                    </ul>
+                        <partial name="_LoginPartial" />
+                    </div>
+                </div>
+            </nav>
+
+        
+       
+    </header>
+
+    <div class="row">
+
+        <div class="container ">
+            <main role="main" class="pb-3">
+                @RenderBody()
+            </main>
+        </div>
+    </div>
+
+     <footer>
+        <div class="footer-top">
+            <div class="container">
+                <div class="footer-day-time">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <ul>
+                                <li>Mağazamız: Ptesi - Cuma : 8.00 - 17.00</li>
+                                <li>Haftasonu: Ctesi - Pazar : 8.00 -12.00</li>
+                            </ul>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="phone-no">
+                                <a href="tel:+12 34 56 78 90"><i class="fa fa-mobile" aria-hidden="true"></i> +90553456789</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-4">
+
+                        <h4>Hakkımızda</h4>
+                        <p>
+                            Fashion, 2019 yılında aile şirketi olarak İstanbul’da kuruldu.
+
+                            Her kesime hitap eden modest fashion/giyim sektörüne getirdiği yenilikler ve çıkardığı koleksiyonlarla kaliteli ürünleri kaliteli kullanıcıların beğenisine sunmaktadır.</p>
+                    </div>
+
+                    <div class="col-md-4 contact-info">
+                        <h4>İLETİŞİM</h4>
+                        <ul class="address1">
+                            <li><i class="fa fa-map-marker"></i> FashionShop Tekstil Maltepe Mah.No 2/2/5 Zeytinburnu İSTANBUL</li>
+                            <li><i class="fa fa-envelope"></i><a href="mailto:#">iletisim@fashionshop.com.tr</a></li>
+                            <li><i class="fa fa-mobile" aria-hidden="true"></i> <a href="tel:+905551234501">+905551234501</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="col-md-4 follow-us">
+                        <h4>BİZİ TAKİP ET</h4>
+                        <ul class="social-icon">
+                            <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                            <li><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+                            <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-5">
+                        <p class="copyright text-uppercase">
+                           FashionShop-2024
+                        </p>
+                    </div>
+                    <div class="col-sm-7">
+                        <ul>
+                            <li><a href="#">Anasayfa</a></li>
+                            <li><a href="#">İade ve Değişim Koşulları</a></li>
+                            <li><a href="#">Üyelik Sözleşmesi</a></li>
+                            <li><a href="#">Satış Sözleşmesi</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script>
+        function toggleClassOnClick() {
+            var dropdownButton = document.getElementById('navbarDropdown');
+
+            if (dropdownButton.classList.contains('btn-dark')) {
+                dropdownButton.classList.remove('btn-dark');
+                dropdownButton.classList.add('btn-secondary');
+            } else if (dropdownButton.classList.contains('btn-secondary')) {
+                dropdownButton.classList.remove('btn-secondary');
+                dropdownButton.classList.add('btn-dark');
+            }
+        };
+        document.addEventListener('click', function (event) {
+            var dropdownButton = document.getElementById('navbarDropdown');
+            var isClickInside = dropdownButton.contains(event.target);
+
+            if (!isClickInside) {
+                dropdownButton.classList.remove('btn-secondary');
+                dropdownButton.classList.add('btn-dark');
+            }
+        });
+
+    </script>
+   
+
+        <script src='https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.0.7/js/swiper.min.js'></script>
+        <script src="https://kit.fontawesome.com/ae360af17e.js" crossorigin="anonymous"></script>
+        <script src="~/Slider/script.js"></script>
+        <!-- Bootstrap JS Kütüphanesi -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>  
+     
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>  
+        <script src="~/lib/jquery/dist/jquery.min.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+                integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
+                crossorigin="anonymous"></script>
+        <script src="~/SideBar/script.js"></script>
+        <script src="~/js/site.js" asp-append-version="true"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+        <script src="//cdn.datatables.net/2.0.5/js/dataTables.min.js"></script>
+        @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

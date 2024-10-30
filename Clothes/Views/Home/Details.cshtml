@@ -1,0 +1,112 @@
+﻿@model ClothesApp.Models.ShoppingCart
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    .card-text {
+        color: black;
+    }
+</style>
+
+<div class="container">
+    <br />
+    <div class="row justify-content-center">
+        <!-- Kart içeriğini ortalamak için -->
+        <div class="col-md-8">
+            <!-- Kart boyutunu ayarlamak için -->
+            <div class="card mb-9">
+                <div class="row g-0">
+                    <div class="col-md-4">
+                        <img src="@Model.Product.ImageUrl" class="img-fluid rounded-start" alt="...">
+                    </div>
+                    <div class="col-md-8">
+                        <!-- Tablonun boyutunu ayarlamak için -->
+                        <div class="card-body">
+                            <table class="table">
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">Başlık</th>
+                                        <td>@Model.Product.Name</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Marka</th>
+                                        <td>@Model.Product.Brand</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Açıklama</th>
+                                        <td>@Model.Product.Description</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Renk</th>
+                                        <td>@Model.Product.Color</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Beden</th>
+                                        <td>@Model.Product.Size</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Fiyat</th>
+                                        <td>@Model.Product.Price.ToString("0.00") ₺</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Adet</th>
+                                        <td> <input asp-for="Count" class="form-control" /></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Stok</th>
+                                        <td>
+                                            @if (Model.Product.IsActive)
+                                            {
+                                                <label class="btn btn-success btn-sm"><i class="bi bi-check-lg"></i> Evet</label>
+                                            }
+                                            else
+                                            {
+                                                <label class="btn btn-danger btn-sm"><i class="bi bi-x-lg"></i> Hayır</label>
+                                            }
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <p class="card-text"><small class="text-body-secondary">Last updated @Model.Product.CreatedAt.ToString("yyyy-MM-dd HH:mm")</small></p>
+
+                            <!-- Sepete Ekle ve Anasayfa linklerini buraya ekliyoruz -->
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <!-- İlk buton -->
+                                    <a asp-action="Index" asp-controller="Home" class="btn btn-primary form-control"><i class="bi bi-house-door"></i> Anasayfa</a>
+                                   
+                                </div>
+                                <div class="col-md-6">
+                                    <!-- İkinci buton -->
+                                    @if (Model.Product.IsActive)
+                                    {
+
+                                        <form method="post" id="addToCartForm">
+                                            <input type="hidden" asp-for="@Model.Product.Id" name="Scart.ProductId">
+                                            <button type="submit" class="btn btn-success pull-right" style="float:rigth;"><i class="bi bi-cart4"></i> Sepete Ekle</button>
+
+
+                                        </form>
+                                      
+
+                                    }
+                                    else
+                                    {
+                                        <label class="btn btn-danger form-control"><i class="bi bi-cart4"></i> Ürün Tükendi</label>
+                                    }
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    function submitForm() {
+        document.getElementById('addToCartForm').submit();
+    }
+</script>

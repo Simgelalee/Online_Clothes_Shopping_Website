@@ -1,0 +1,90 @@
+﻿@model ClothesApp.Models.Product
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+
+<div>
+    <h4 style="color: wheat">Ayrıntılar</h4>
+    
+  
+    <div class="container">
+        <div class="row justify-content-center ">
+            <div class="col-md-8">
+    <table class="table" style="color: wheat">
+        <thead>
+            <tr>
+                <th class="col-sm-2">Özellik</th>
+                <th class="col-sm-10">Değer</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>İsim</td>
+                <td>@Html.DisplayFor(model => model.Name)</td>
+            </tr>
+            <tr>
+                <td>Açıklama</td>
+                <td>@Html.DisplayFor(model => model.Description)</td>
+            </tr>
+            <tr>
+                <td>Fiyat</td>
+                <td>@Html.DisplayFor(model => model.Price)</td>
+            </tr>
+            <tr>
+                <td>Anasayfa</td>
+                <td>@Html.DisplayFor(model => model.IsHome)</td>
+            </tr>
+            <tr>
+                <td>Resim URL</td>
+                <td>@Html.DisplayFor(model => model.ImageUrl)</td>
+            </tr>
+            <tr>
+                <td>Kategori ID</td>
+                <td>@Html.DisplayFor(model => model.Category.Id)</td>
+            </tr>
+            <tr>
+                <td>Marka</td>
+                <td>@Html.DisplayFor(model => model.Brand)</td>
+            </tr>
+            <tr>
+                <td>Model</td>
+                <td>@Html.DisplayFor(model => model.Model)</td>
+            </tr>
+            <tr>
+                <td>Renk</td>
+                <td>@Html.DisplayFor(model => model.Color)</td>
+            </tr>
+            <tr>
+                <td>Boyut</td>
+                <td>@Html.DisplayFor(model => model.Size)</td>
+            </tr>
+            <tr>
+                <td>Stok Miktarı</td>
+                <td>@Html.DisplayFor(model => model.StockQuantity)</td>
+            </tr>
+            <tr>
+                <td>Aktif Mi?</td>
+                <td>@Html.DisplayFor(model => model.IsActive)</td>
+            </tr>
+            <tr>
+                <td>Oluşturulma Tarihi</td>
+                <td>@Html.DisplayFor(model => model.CreatedAt)</td>
+            </tr>
+        </tbody>
+    </table>
+
+
+ 
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.Id" class="btn btn-success"><i class="bi bi-pencil"></i>Düzenle</a>
+    <a asp-action="Index" class="btn btn-primary">Kayıt Listesi</a>
+</div>
+        </div>
+
+    </div>
+</div>
